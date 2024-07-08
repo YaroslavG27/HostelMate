@@ -1,0 +1,13 @@
+{
+  "name": "hostelmate",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "1. Create .env Copy `.env.example` file, name it `.env` and add credentials. 2. To run this project, run the following command in the terminal: npm run dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
