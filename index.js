@@ -5,8 +5,12 @@ const app = express()
 
 // create routes
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Welcome to Hostel Mate!')
 })
+// Import the users router module
+import usersRouter from './routes/usersRoute.js'
+// Tell the app to use the user router
+app.use(usersRouter)
 
 // keep the server open
 app.listen(4000, () => {
