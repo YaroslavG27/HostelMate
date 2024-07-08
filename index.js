@@ -10,8 +10,9 @@ app.get('/', (req, res) => {
 // Import the users router module
 import usersRouter from './routes/usersRoute.js'
 import cvRouter from './routes/cvRoute.js'
+import reviewsRouter from './routes/reviewsRoute.js'
 // Tell the app to use the user router
-app.use(usersRouter, cvRouter)
+app.use(usersRouter, cvRouter, reviewsRouter)
 
 // keep the server open
 app.listen(4000, () => {
