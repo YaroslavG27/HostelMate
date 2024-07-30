@@ -12,4 +12,18 @@ router.get('/reviews', async (req, res) => {
   }
 })
 
+router.get('/reviews/:reviewId', async (req, res) => {
+  let reviewId = req.params.reviewId
+  console.log(reviewId)
+  try {
+    const { rows } = await db.query(
+      `SELECT * FROM reviews WHERE review_id = ${reviewId}`
+    )
+    res.json(rows[0]) // respond with the data
+  } catch (err) {
+    console.error(err.message)
+    res.json(err)
+  }
+})
+
 export default router
