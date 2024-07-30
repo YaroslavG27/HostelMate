@@ -14,5 +14,33 @@ router.get('/cv', async (req, res) => {
   }
 })
 
+//And an example using the URL query for an SQL query:
+router.get('/cvsearch', async (req, res) => {
+  try {
+    const { languages, job_title, location } = req.query
+    let query = 'SELECT * FROM cv WHERE availability = true'
+    if (languages) {
+      query += ` AND languages LIKE '%${languages}%'`
+    }
+    if (job_title) {
+      query += ` AND job_title LIKE '%${job_title}%'`
+    }
+    if (location) {
+      query += ` AND location LIKE '%${location}%'`
+    }
+    console.log(query)
+    const { rows } = await db.query(query)
+    // avoid respond in an empty array if there's no worker according to the requirement
+    if (rows.length === 0) {
+      return res.send({
+        error: `There are no candidates meeting these criteria.`
+      })
+    }
+    res.json(rows)
+  } catch (err) {
+    console.err(err.message)
+    res.json(err)
+  }
+})
 // Export the router to use it in your main app
 export default router
