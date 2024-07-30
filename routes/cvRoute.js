@@ -14,6 +14,17 @@ router.get('/cv', async (req, res) => {
   }
 })
 
+router.get('/cv/:cv_id', async (req, res) => {
+  let cv_id = req.params.cv_id
+  try {
+    const { rows } = await db.query(`SELECT * FROM cv WHERE cv_id = ${cv_id}`)
+    res.json(rows[0])
+  } catch (err) {
+    console.err(err.message)
+    res.json(err)
+  }
+})
+
 //And an example using the URL query for an SQL query:
 router.get('/cvsearch', async (req, res) => {
   try {
